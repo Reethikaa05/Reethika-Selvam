@@ -3,7 +3,7 @@
 # ✨ Tisso Vision Theme ✨
 **EcomExperts Shopify Developer Assessment by Reethika Selvam**
 
-![Banner](https://via.placeholder.com/800x200/1a1a1a/ffffff?text=Tisso+Vision+Theme+Project)
+
 
 [![View Live Store](https://img.shields.io/badge/Shopify-Live_Store-96bf48?style=for-the-badge&logo=shopify)](https://reethika-selvam-s-48-teststore.myshopify.com)
 [![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/Reethikaa05/Reethika-Selvam)
