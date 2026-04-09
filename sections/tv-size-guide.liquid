@@ -1,0 +1,197 @@
+{{ 'tisso-global.css' | asset_url | stylesheet_tag }}
+
+{% comment %}
+  Section: tv-size-guide
+  Purpose: Interactive size guide page with measurement tables
+{% endcomment %}
+
+<style>
+  .tvsg { max-width: 900px; margin: 0 auto; padding: 80px var(--tv-gutter); font-family: var(--tv-font-body); }
+  .tvsg__hero { margin-bottom: 56px; }
+  .tvsg__heading { font-family: var(--tv-font-display); font-size: clamp(2rem,4vw,3.5rem); font-weight: 900; letter-spacing: -0.03em; margin: 0 0 12px; color: var(--tv-black); }
+  .tvsg__sub { font-size: 1rem; color: var(--tv-gray-700); line-height: 1.65; margin: 0; max-width: 560px; }
+  .tvsg__tabs { display: flex; gap: 0; border-bottom: 2px solid var(--tv-gray-200); margin-bottom: 36px; flex-wrap: wrap; }
+  .tvsg__tab { padding: 12px 24px; font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; background: none; border: none; border-bottom: 2px solid transparent; margin-bottom: -2px; cursor: pointer; color: var(--tv-gray-500); transition: color 0.2s, border-color 0.2s; }
+  .tvsg__tab.is-active { color: var(--tv-black); border-bottom-color: var(--tv-black); }
+  .tvsg__panel { display: none; } .tvsg__panel.is-active { display: block; }
+  .tvsg__tip { background: var(--tv-cream); border-left: 3px solid var(--tv-yellow-dark); padding: 16px 20px; margin-bottom: 28px; font-size: 0.875rem; color: var(--tv-gray-700); line-height: 1.55; }
+  .tvsg__tip strong { color: var(--tv-black); }
+  .tvsg__table-wrap { overflow-x: auto; }
+  .tvsg__table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+  .tvsg__table th { background: var(--tv-black); color: var(--tv-white); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; font-size: 0.75rem; padding: 12px 16px; text-align: left; white-space: nowrap; }
+  .tvsg__table td { padding: 12px 16px; border-bottom: 1px solid var(--tv-gray-200); color: var(--tv-black); white-space: nowrap; }
+  .tvsg__table tr:hover td { background: var(--tv-cream); }
+  .tvsg__table td:first-child { font-weight: 700; }
+  .tvsg__how { margin-top: 56px; }
+  .tvsg__how-heading { font-family: var(--tv-font-display); font-size: 1.5rem; font-weight: 700; margin: 0 0 28px; }
+  .tvsg__how-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+  .tvsg__how-item { padding: 24px; background: var(--tv-cream); }
+  .tvsg__how-num { font-family: var(--tv-font-display); font-size: 2rem; font-weight: 900; color: var(--tv-gray-200); margin: 0 0 8px; }
+  .tvsg__how-title { font-weight: 700; font-size: 0.9rem; margin: 0 0 6px; color: var(--tv-black); }
+  .tvsg__how-text { font-size: 0.8125rem; color: var(--tv-gray-700); line-height: 1.55; margin: 0; }
+  @media (max-width: 640px) { .tvsg__how-grid { grid-template-columns: 1fr; } .tvsg__tab { padding: 10px 16px; font-size: 0.75rem; } }
+</style>
+
+<div class="tvsg">
+  <div class="tvsg__hero">
+    <h1 class="tvsg__heading">Size Guide</h1>
+    <p class="tvsg__sub">We want you to feel amazing in every piece. Use this guide to find your perfect fit — all our styles run true to size in our full range of XXS to 6XL.</p>
+  </div>
+
+  <div class="tvsg__tabs" role="tablist">
+    <button class="tvsg__tab is-active" role="tab" aria-selected="true" data-target="women">Women</button>
+    <button class="tvsg__tab" role="tab" aria-selected="false" data-target="men">Men</button>
+    <button class="tvsg__tab" role="tab" aria-selected="false" data-target="tops">Tops & Jackets</button>
+    <button class="tvsg__tab" role="tab" aria-selected="false" data-target="shoes">Footwear</button>
+  </div>
+
+  <!-- Women -->
+  <div class="tvsg__panel is-active" id="panel-women">
+    <div class="tvsg__tip">
+      <strong>How to measure:</strong> Measure your bust at the fullest point, your natural waist at the narrowest, and your hips 8" below your waist. Always use a soft tape measure.
+    </div>
+    <div class="tvsg__table-wrap">
+      <table class="tvsg__table">
+        <thead><tr><th>Size</th><th>US</th><th>UK</th><th>EU</th><th>Bust (in)</th><th>Waist (in)</th><th>Hips (in)</th></tr></thead>
+        <tbody>
+          <tr><td>XXS</td><td>00</td><td>2</td><td>30</td><td>30–31</td><td>22–23</td><td>32–33</td></tr>
+          <tr><td>XS</td><td>0–2</td><td>4–6</td><td>32–34</td><td>32–33</td><td>24–25</td><td>34–35</td></tr>
+          <tr><td>S</td><td>4–6</td><td>8–10</td><td>36–38</td><td>34–35</td><td>26–27</td><td>36–37</td></tr>
+          <tr><td>M</td><td>8–10</td><td>12–14</td><td>40–42</td><td>36–37.5</td><td>28–29.5</td><td>38–39.5</td></tr>
+          <tr><td>L</td><td>12–14</td><td>16–18</td><td>44–46</td><td>38.5–40</td><td>30.5–32</td><td>40.5–42</td></tr>
+          <tr><td>XL</td><td>16–18</td><td>20–22</td><td>48–50</td><td>41–43</td><td>33–35</td><td>43–45</td></tr>
+          <tr><td>2XL</td><td>20–22</td><td>24–26</td><td>52–54</td><td>44–46</td><td>36–38</td><td>46–48</td></tr>
+          <tr><td>3XL</td><td>24–26</td><td>28–30</td><td>56–58</td><td>47–49</td><td>39–41</td><td>49–51</td></tr>
+          <tr><td>4XL</td><td>28–30</td><td>32–34</td><td>60–62</td><td>50–52</td><td>42–44</td><td>52–54</td></tr>
+          <tr><td>5XL</td><td>32–34</td><td>36–38</td><td>64–66</td><td>53–55</td><td>45–47</td><td>55–57</td></tr>
+          <tr><td>6XL</td><td>36+</td><td>40+</td><td>68+</td><td>56–58</td><td>48–50</td><td>58–60</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Men -->
+  <div class="tvsg__panel" id="panel-men">
+    <div class="tvsg__tip">
+      <strong>How to measure:</strong> Measure your chest at the widest point, waist at the navel level, and hips at the widest point.
+    </div>
+    <div class="tvsg__table-wrap">
+      <table class="tvsg__table">
+        <thead><tr><th>Size</th><th>US/UK</th><th>EU</th><th>Chest (in)</th><th>Waist (in)</th><th>Hips (in)</th></tr></thead>
+        <tbody>
+          <tr><td>XXS</td><td>XXS</td><td>44</td><td>32–33</td><td>26–27</td><td>33–34</td></tr>
+          <tr><td>XS</td><td>XS</td><td>46</td><td>34–35</td><td>28–29</td><td>35–36</td></tr>
+          <tr><td>S</td><td>S</td><td>48</td><td>36–37</td><td>30–31</td><td>37–38</td></tr>
+          <tr><td>M</td><td>M</td><td>50</td><td>38–40</td><td>32–34</td><td>39–41</td></tr>
+          <tr><td>L</td><td>L</td><td>52</td><td>41–43</td><td>35–37</td><td>42–44</td></tr>
+          <tr><td>XL</td><td>XL</td><td>54</td><td>44–46</td><td>38–40</td><td>45–47</td></tr>
+          <tr><td>2XL</td><td>2XL</td><td>56</td><td>47–49</td><td>41–43</td><td>48–50</td></tr>
+          <tr><td>3XL</td><td>3XL</td><td>58</td><td>50–52</td><td>44–46</td><td>51–53</td></tr>
+          <tr><td>4XL</td><td>4XL</td><td>60</td><td>53–55</td><td>47–49</td><td>54–56</td></tr>
+          <tr><td>5XL</td><td>5XL</td><td>62</td><td>56–58</td><td>50–52</td><td>57–59</td></tr>
+          <tr><td>6XL</td><td>6XL</td><td>64+</td><td>59–62</td><td>53–56</td><td>60–63</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Tops -->
+  <div class="tvsg__panel" id="panel-tops">
+    <div class="tvsg__tip">
+      <strong>Jackets & Tops:</strong> For fitted styles, use your bust/chest measurement. For relaxed or oversized styles, size down one for a closer fit.
+    </div>
+    <div class="tvsg__table-wrap">
+      <table class="tvsg__table">
+        <thead><tr><th>Size</th><th>Chest (in)</th><th>Shoulder (in)</th><th>Sleeve Length (in)</th></tr></thead>
+        <tbody>
+          <tr><td>XXS</td><td>30–32</td><td>13.5</td><td>22</td></tr>
+          <tr><td>XS</td><td>33–34</td><td>14</td><td>22.5</td></tr>
+          <tr><td>S</td><td>35–36</td><td>14.5</td><td>23</td></tr>
+          <tr><td>M</td><td>37–39</td><td>15.5</td><td>23.5</td></tr>
+          <tr><td>L</td><td>40–42</td><td>16.5</td><td>24</td></tr>
+          <tr><td>XL</td><td>43–45</td><td>17.5</td><td>24.5</td></tr>
+          <tr><td>2XL</td><td>46–48</td><td>18.5</td><td>25</td></tr>
+          <tr><td>3XL–6XL</td><td>49–62+</td><td>19–22</td><td>25.5–27</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Shoes -->
+  <div class="tvsg__panel" id="panel-shoes">
+    <div class="tvsg__tip">
+      <strong>Tip:</strong> Measure your foot length from heel to longest toe while standing. If between sizes, we recommend sizing up.
+    </div>
+    <div class="tvsg__table-wrap">
+      <table class="tvsg__table">
+        <thead><tr><th>US Women</th><th>US Men</th><th>UK</th><th>EU</th><th>Foot Length (in)</th><th>Foot Length (cm)</th></tr></thead>
+        <tbody>
+          <tr><td>5</td><td>3.5</td><td>2.5</td><td>35</td><td>8.5"</td><td>21.6</td></tr>
+          <tr><td>6</td><td>4.5</td><td>3.5</td><td>36</td><td>8.875"</td><td>22.5</td></tr>
+          <tr><td>7</td><td>5.5</td><td>4.5</td><td>37–38</td><td>9.25"</td><td>23.5</td></tr>
+          <tr><td>8</td><td>6.5</td><td>5.5</td><td>38–39</td><td>9.5"</td><td>24.1</td></tr>
+          <tr><td>9</td><td>7.5</td><td>6.5</td><td>39–40</td><td>9.875"</td><td>25.1</td></tr>
+          <tr><td>10</td><td>8.5</td><td>7.5</td><td>40–41</td><td>10.25"</td><td>26</td></tr>
+          <tr><td>11</td><td>9.5</td><td>8.5</td><td>41–42</td><td>10.5"</td><td>26.7</td></tr>
+          <tr><td>12</td><td>10.5</td><td>9.5</td><td>43</td><td>10.875"</td><td>27.6</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- How to Measure -->
+  <div class="tvsg__how">
+    <h2 class="tvsg__how-heading">How to Measure</h2>
+    <div class="tvsg__how-grid">
+      <div class="tvsg__how-item">
+        <div class="tvsg__how-num">01</div>
+        <h3 class="tvsg__how-title">Grab a Soft Tape</h3>
+        <p class="tvsg__how-text">Use a flexible fabric tape measure, not a rigid ruler. Stand naturally — don't pull the tape too tight.</p>
+      </div>
+      <div class="tvsg__how-item">
+        <div class="tvsg__how-num">02</div>
+        <h3 class="tvsg__how-title">Measure at the Right Points</h3>
+        <p class="tvsg__how-text">Bust = fullest part. Waist = narrowest point. Hips = widest point, about 8" below your waist.</p>
+      </div>
+      <div class="tvsg__how-item">
+        <div class="tvsg__how-num">03</div>
+        <h3 class="tvsg__how-title">When in Doubt, Go Up</h3>
+        <p class="tvsg__how-text">If you're between sizes, sizing up gives you a more comfortable fit. You can always email us for personalised advice.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Size guide tab switcher — vanilla JS
+  (function () {
+    var tabs   = document.querySelectorAll('.tvsg__tab');
+    var panels = document.querySelectorAll('.tvsg__panel');
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        var target = tab.dataset.target;
+
+        // Deactivate all
+        tabs.forEach(function (t) { t.classList.remove('is-active'); t.setAttribute('aria-selected', 'false'); });
+        panels.forEach(function (p) { p.classList.remove('is-active'); });
+
+        // Activate selected
+        tab.classList.add('is-active');
+        tab.setAttribute('aria-selected', 'true');
+        var panel = document.getElementById('panel-' + target);
+        if (panel) panel.classList.add('is-active');
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "TV Size Guide",
+  "tag": "section",
+  "settings": [],
+  "presets": [{ "name": "TV Size Guide" }]
+}
+{% endschema %}

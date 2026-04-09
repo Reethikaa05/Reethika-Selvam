@@ -1,0 +1,172 @@
+{{ 'custom-page.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'custom-page.js' | asset_url }}" defer></script>
+
+{% comment %}
+  ============================================================
+  Section: custom-product-grid
+  Purpose: "Tisso vison in the wild" 3×2 photo grid with
+           product popup (name, price, desc, variants, ATC).
+  Figma ref: Grid section + Popup overlay
+  Notes:
+    - Up to 6 blocks (one per product card)
+    - Products selectable from customizer
+    - Clicking any card or the dot opens the popup
+    - Popup renders variant options dynamically via /products/:handle.js
+    - ATC uses Shopify AJAX cart API (vanilla JS, no jQuery)
+    - Upsell: Black + Medium → also adds "Soft Winter Jacket"
+  ============================================================
+{% endcomment %}
+
+<section class="cg" id="cg-{{ section.id }}">
+
+  {%- comment -%} Section heading {%- endcomment -%}
+  <div class="cg__header">
+    <h2 class="cg__heading">{{ section.settings.section_heading }}</h2>
+  </div>
+
+  {%- comment -%} 3-column photo grid {%- endcomment -%}
+  <div class="cg__grid">
+    {% for block in section.blocks %}
+      {%- assign product = block.settings.product -%}
+      {% if product != blank %}
+        <article
+          class="cg__card"
+          data-product-handle="{{ product.handle }}"
+          data-product-title="{{ product.title | escape }}"
+          {{ block.shopify_attributes }}
+          role="button"
+          tabindex="0"
+          aria-label="Quick view {{ product.title | escape }}"
+        >
+          {%- comment -%} Photo {%- endcomment -%}
+          <div class="cg__card-img-wrap">
+            {% if product.featured_image %}
+              <img
+                src="{{ product.featured_image | image_url: width: 700 }}"
+                alt="{{ product.featured_image.alt | escape | default: product.title }}"
+                width="700"
+                height="700"
+                loading="lazy"
+                class="cg__card-img"
+              />
+            {% else %}
+              <div class="cg__card-img-placeholder">
+                {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              </div>
+            {% endif %}
+
+            {%- comment -%} Pulsing dot — triggers popup {%- endcomment -%}
+            <button
+              class="cg__dot"
+              aria-label="Quick view {{ product.title | escape }}"
+              tabindex="-1"
+            >
+              <span class="cg__dot-ring"></span>
+              <span class="cg__dot-core"></span>
+            </button>
+          </div>
+        </article>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+</section>
+
+{% comment %}
+  ============================================================
+  POPUP MODAL — rendered once, reused for all products
+  ============================================================
+{% endcomment %}
+<div
+  class="cp"
+  id="cp-modal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="cp-title"
+  hidden
+>
+  {%- comment -%} Backdrop — click to close {%- endcomment -%}
+  <div class="cp__backdrop" id="cp-backdrop" aria-hidden="true"></div>
+
+  {%- comment -%} Modal card {%- endcomment -%}
+  <div class="cp__modal">
+
+    {%- comment -%} Close button {%- endcomment -%}
+    <button class="cp__close" id="cp-close" aria-label="Close">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <div class="cp__body">
+
+      {%- comment -%} Left: product image {%- endcomment -%}
+      <div class="cp__img-wrap">
+        <img id="cp-img" src="" alt="" width="400" height="400" />
+      </div>
+
+      {%- comment -%} Right: product info {%- endcomment -%}
+      <div class="cp__info">
+        <h3 class="cp__title" id="cp-title"></h3>
+        <p class="cp__price" id="cp-price"></p>
+        <div class="cp__desc" id="cp-desc"></div>
+
+        {%- comment -%} Variant selectors rendered by JS {%- endcomment -%}
+        <div class="cp__variants" id="cp-variants"></div>
+
+        {%- comment -%} Add to Cart {%- endcomment -%}
+        <button class="cp__atc" id="cp-atc" type="button">
+          ADD TO CART
+          <span class="cp__atc-arrow" aria-hidden="true">→</span>
+        </button>
+
+        {%- comment -%} Status message (success / error) {%- endcomment -%}
+        <p class="cp__msg" id="cp-msg" aria-live="polite" role="status"></p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Product Grid",
+  "tag": "section",
+  "class": "custom-grid-section",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Section Heading",
+      "default": "Tisso vison in the wild"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_card",
+      "name": "Product Card",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Product Grid",
+      "blocks": [
+        { "type": "product_card" },
+        { "type": "product_card" },
+        { "type": "product_card" },
+        { "type": "product_card" },
+        { "type": "product_card" },
+        { "type": "product_card" }
+      ]
+    }
+  ]
+}
+{% endschema %}

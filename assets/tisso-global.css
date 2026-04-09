@@ -1,0 +1,1113 @@
+/* ==========================================================================
+   tisso-global.css
+   Global brand styles for Tisso Vison store
+   Beautiful, trendy, editorial fashion e-commerce aesthetic
+   Fonts: Playfair Display (headings) + DM Sans (body)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap');
+
+/* --------------------------------------------------------------------------
+   BRAND TOKENS
+   -------------------------------------------------------------------------- */
+:root {
+  /* Core palette */
+  --tv-black:       #0a0a0a;
+  --tv-white:       #ffffff;
+  --tv-cream:       #f9f6f1;
+  --tv-yellow:      #f0e030;
+  --tv-yellow-dark: #d4c510;
+  --tv-gray-50:     #fafafa;
+  --tv-gray-100:    #f4f4f4;
+  --tv-gray-200:    #e8e8e8;
+  --tv-gray-300:    #d0d0d0;
+  --tv-gray-500:    #9a9a9a;
+  --tv-gray-700:    #555555;
+  --tv-red:         #d63031;
+
+  /* Typography */
+  --tv-font-display: 'Playfair Display', 'Georgia', serif;
+  --tv-font-body:    'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+
+  /* Easing */
+  --tv-ease:     cubic-bezier(0.4, 0, 0.2, 1);
+  --tv-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --tv-dur:      0.28s;
+  --tv-dur-slow: 0.5s;
+
+  /* Layout */
+  --tv-max-width: 1280px;
+  --tv-gutter:    clamp(16px, 4vw, 60px);
+}
+
+/* --------------------------------------------------------------------------
+   BASE RESETS & GLOBAL OVERRIDES
+   -------------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Override Horizon/Shopify theme base fonts globally */
+body,
+.shopify-section,
+[class*="color-"] {
+  font-family: var(--tv-font-body) !important;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: var(--tv-font-display) !important;
+  letter-spacing: -0.02em;
+}
+
+/* --------------------------------------------------------------------------
+   ANNOUNCEMENT BAR OVERRIDE
+   -------------------------------------------------------------------------- */
+.shopify-section:has(.header-announcements),
+.announcement-bar {
+  background: var(--tv-black) !important;
+  color: var(--tv-white) !important;
+  font-family: var(--tv-font-body) !important;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   HEADER OVERRIDE — make it sharp and branded
+   -------------------------------------------------------------------------- */
+.header-wrapper,
+.header {
+  border-bottom: 1px solid var(--tv-gray-200) !important;
+  background: var(--tv-white) !important;
+}
+
+/* ==========================================================================
+   HOMEPAGE — HERO SECTION OVERRIDE
+   ========================================================================== */
+
+/* ==========================================================================
+   TISSO HOMEPAGE SECTIONS
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   TV-HERO: Full editorial hero banner
+   -------------------------------------------------------------------------- */
+.tv-hero {
+  position: relative;
+  min-height: 88vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  background: var(--tv-cream);
+}
+
+.tv-hero__left {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 80px var(--tv-gutter) 80px;
+  position: relative;
+  z-index: 2;
+}
+
+.tv-hero__eyebrow {
+  font-family: var(--tv-font-body);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--tv-gray-500);
+  margin: 0 0 20px;
+}
+
+.tv-hero__heading {
+  font-family: var(--tv-font-display);
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  color: var(--tv-black);
+  margin: 0 0 28px;
+}
+
+.tv-hero__heading em {
+  font-style: italic;
+  color: var(--tv-gray-500);
+}
+
+.tv-hero__body {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--tv-gray-700);
+  max-width: 360px;
+  margin: 0 0 40px;
+}
+
+.tv-hero__actions {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.tv-hero__right {
+  position: relative;
+  overflow: hidden;
+}
+
+.tv-hero__right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 8s ease;
+}
+
+.tv-hero:hover .tv-hero__right img {
+  transform: scale(1.04);
+}
+
+/* Floating tag */
+.tv-hero__tag {
+  position: absolute;
+  bottom: 40px;
+  left: -20px;
+  background: var(--tv-yellow);
+  border: 1.5px solid var(--tv-black);
+  padding: 12px 20px;
+  font-family: var(--tv-font-display);
+  font-size: 0.875rem;
+  font-style: italic;
+  color: var(--tv-black);
+  z-index: 3;
+  box-shadow: 4px 4px 0 var(--tv-black);
+}
+
+/* --------------------------------------------------------------------------
+   BUTTONS — Global brand buttons
+   -------------------------------------------------------------------------- */
+.tv-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--tv-font-body);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 14px 28px;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--tv-dur) var(--tv-ease);
+  white-space: nowrap;
+}
+
+.tv-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.15);
+  transform: translateX(-110%) skewX(-12deg);
+  transition: transform 0.5s ease;
+  pointer-events: none;
+}
+.tv-btn:hover::after { transform: translateX(120%) skewX(-12deg); }
+
+.tv-btn--primary {
+  background: var(--tv-black);
+  color: var(--tv-white);
+  border-color: var(--tv-black);
+}
+.tv-btn--primary:hover {
+  background: #222;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+}
+
+.tv-btn--outline {
+  background: transparent;
+  color: var(--tv-black);
+  border-color: var(--tv-black);
+}
+.tv-btn--outline:hover {
+  background: var(--tv-black);
+  color: var(--tv-white);
+}
+
+.tv-btn--yellow {
+  background: var(--tv-yellow);
+  color: var(--tv-black);
+  border-color: var(--tv-black);
+  box-shadow: 3px 3px 0 var(--tv-black);
+}
+.tv-btn--yellow:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--tv-black);
+}
+.tv-btn--yellow:active {
+  transform: translate(0,0);
+  box-shadow: 1px 1px 0 var(--tv-black);
+}
+
+.tv-btn__arrow {
+  display: inline-block;
+  transition: transform var(--tv-dur) var(--tv-ease);
+}
+.tv-btn:hover .tv-btn__arrow { transform: translateX(5px); }
+
+/* --------------------------------------------------------------------------
+   CATEGORIES STRIP
+   -------------------------------------------------------------------------- */
+.tv-cats {
+  padding: 64px var(--tv-gutter);
+  max-width: var(--tv-max-width);
+  margin: 0 auto;
+}
+
+.tv-cats__label {
+  font-family: var(--tv-font-body);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--tv-gray-500);
+  margin: 0 0 28px;
+}
+
+.tv-cats__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.tv-cats__item {
+  text-decoration: none;
+  display: block;
+  position: relative;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  background: var(--tv-gray-100);
+}
+
+.tv-cats__item-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s var(--tv-ease);
+}
+.tv-cats__item:hover .tv-cats__item-img { transform: scale(1.07); }
+
+.tv-cats__item-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 50%);
+  display: flex;
+  align-items: flex-end;
+  padding: 16px 14px;
+}
+
+.tv-cats__item-name {
+  font-family: var(--tv-font-display);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--tv-white);
+  letter-spacing: 0;
+}
+
+/* --------------------------------------------------------------------------
+   FEATURED SECTION — "New Arrivals" etc
+   -------------------------------------------------------------------------- */
+.tv-featured {
+  padding: 64px var(--tv-gutter);
+  background: var(--tv-white);
+}
+
+.tv-featured__inner { max-width: var(--tv-max-width); margin: 0 auto; }
+
+.tv-featured__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 36px;
+  gap: 20px;
+}
+
+.tv-featured__heading {
+  font-family: var(--tv-font-display);
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  font-weight: 700;
+  color: var(--tv-black);
+  margin: 0;
+  line-height: 1.1;
+}
+
+.tv-featured__heading span {
+  display: block;
+  font-style: italic;
+  color: var(--tv-gray-500);
+  font-weight: 400;
+}
+
+/* --------------------------------------------------------------------------
+   MARQUEE / TICKER
+   -------------------------------------------------------------------------- */
+.tv-marquee {
+  background: var(--tv-black);
+  color: var(--tv-white);
+  overflow: hidden;
+  padding: 14px 0;
+  border-top: 1px solid #222;
+  border-bottom: 1px solid #222;
+}
+
+.tv-marquee__track {
+  display: flex;
+  gap: 0;
+  white-space: nowrap;
+  animation: tv-scroll 22s linear infinite;
+}
+
+.tv-marquee:hover .tv-marquee__track { animation-play-state: paused; }
+
+.tv-marquee__item {
+  font-family: var(--tv-font-body);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0 32px;
+}
+
+.tv-marquee__dot {
+  opacity: 0.4;
+  font-size: 0.6875rem;
+}
+
+@keyframes tv-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* --------------------------------------------------------------------------
+   EDITORIAL SPLIT SECTION
+   -------------------------------------------------------------------------- */
+.tv-editorial {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 500px;
+}
+
+.tv-editorial__media {
+  position: relative;
+  overflow: hidden;
+}
+
+.tv-editorial__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s var(--tv-ease);
+}
+.tv-editorial__media:hover img { transform: scale(1.04); }
+
+.tv-editorial__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px var(--tv-gutter);
+  background: var(--tv-cream);
+}
+
+.tv-editorial--reverse .tv-editorial__media { order: 2; }
+.tv-editorial--reverse .tv-editorial__content { order: 1; }
+
+.tv-editorial__kicker {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--tv-gray-500);
+  margin: 0 0 16px;
+}
+
+.tv-editorial__heading {
+  font-family: var(--tv-font-display);
+  font-size: clamp(1.75rem, 3vw, 3rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--tv-black);
+  margin: 0 0 20px;
+}
+
+.tv-editorial__body {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--tv-gray-700);
+  max-width: 420px;
+  margin: 0 0 32px;
+}
+
+/* --------------------------------------------------------------------------
+   TESTIMONIALS
+   -------------------------------------------------------------------------- */
+.tv-reviews {
+  padding: 80px var(--tv-gutter);
+  background: var(--tv-cream);
+}
+
+.tv-reviews__inner { max-width: var(--tv-max-width); margin: 0 auto; }
+
+.tv-reviews__heading {
+  font-family: var(--tv-font-display);
+  font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 48px;
+  color: var(--tv-black);
+}
+
+.tv-reviews__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.tv-review-card {
+  background: var(--tv-white);
+  padding: 32px 28px;
+  border: 1px solid var(--tv-gray-200);
+  position: relative;
+}
+
+.tv-review-card__stars {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 14px;
+}
+
+.tv-review-card__star {
+  color: var(--tv-yellow-dark);
+  font-size: 1rem;
+}
+
+.tv-review-card__text {
+  font-family: var(--tv-font-display);
+  font-size: 1rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--tv-black);
+  margin: 0 0 20px;
+}
+
+.tv-review-card__author {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--tv-gray-500);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   ABOUT PAGE STYLES
+   -------------------------------------------------------------------------- */
+.tv-about-hero {
+  min-height: 55vh;
+  background: var(--tv-black);
+  display: flex;
+  align-items: flex-end;
+  padding: 0 var(--tv-gutter) 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.tv-about-hero__bg {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 2px,
+      rgba(255,255,255,0.03) 2px,
+      rgba(255,255,255,0.03) 4px
+    );
+}
+
+.tv-about-hero__content {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+}
+
+.tv-about-hero__heading {
+  font-family: var(--tv-font-display);
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-weight: 900;
+  color: var(--tv-white);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin: 0 0 24px;
+}
+
+.tv-about-hero__heading em {
+  font-style: italic;
+  color: var(--tv-yellow);
+}
+
+.tv-about-hero__body {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.75);
+  margin: 0;
+}
+
+/* About values grid */
+.tv-values {
+  padding: 80px var(--tv-gutter);
+  max-width: var(--tv-max-width);
+  margin: 0 auto;
+}
+
+.tv-values__heading {
+  font-family: var(--tv-font-display);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 700;
+  margin: 0 0 48px;
+}
+
+.tv-values__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--tv-gray-200);
+  border: 1px solid var(--tv-gray-200);
+}
+
+.tv-value-item {
+  background: var(--tv-white);
+  padding: 40px 32px;
+}
+
+.tv-value-item__number {
+  font-family: var(--tv-font-display);
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--tv-gray-200);
+  line-height: 1;
+  margin: 0 0 16px;
+}
+
+.tv-value-item__title {
+  font-family: var(--tv-font-display);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--tv-black);
+  margin: 0 0 10px;
+}
+
+.tv-value-item__text {
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--tv-gray-700);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   CONTACT PAGE STYLES
+   -------------------------------------------------------------------------- */
+.tv-contact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 80vh;
+}
+
+.tv-contact__left {
+  background: var(--tv-black);
+  padding: 80px var(--tv-gutter);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tv-contact__heading {
+  font-family: var(--tv-font-display);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 900;
+  color: var(--tv-white);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0 0 24px;
+}
+
+.tv-contact__heading em {
+  font-style: italic;
+  color: var(--tv-yellow);
+}
+
+.tv-contact__info {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.tv-contact__info-item {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 20px;
+}
+
+.tv-contact__info-label {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--tv-gray-500);
+  margin: 0 0 6px;
+}
+
+.tv-contact__info-value {
+  font-size: 0.9375rem;
+  color: var(--tv-white);
+  margin: 0;
+}
+
+.tv-contact__right {
+  background: var(--tv-cream);
+  padding: 80px var(--tv-gutter);
+  display: flex;
+  align-items: center;
+}
+
+.tv-contact__form {
+  width: 100%;
+  max-width: 480px;
+}
+
+/* Form fields */
+.tv-form-group {
+  margin-bottom: 20px;
+}
+
+.tv-form-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--tv-black);
+  margin-bottom: 8px;
+}
+
+.tv-form-input,
+.tv-form-textarea {
+  width: 100%;
+  padding: 13px 16px;
+  font-family: var(--tv-font-body);
+  font-size: 0.9375rem;
+  color: var(--tv-black);
+  background: var(--tv-white);
+  border: 1.5px solid var(--tv-gray-300);
+  border-radius: 0;
+  outline: none;
+  transition: border-color var(--tv-dur);
+  appearance: none;
+}
+
+.tv-form-input:focus,
+.tv-form-textarea:focus {
+  border-color: var(--tv-black);
+}
+
+.tv-form-textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+/* --------------------------------------------------------------------------
+   FAQ PAGE STYLES
+   -------------------------------------------------------------------------- */
+.tv-faq {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 80px var(--tv-gutter);
+}
+
+.tv-faq__heading {
+  font-family: var(--tv-font-display);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.tv-faq__subheading {
+  font-size: 1rem;
+  color: var(--tv-gray-700);
+  margin: 0 0 56px;
+}
+
+.tv-faq-item {
+  border-top: 1.5px solid var(--tv-gray-200);
+}
+
+.tv-faq-item:last-child {
+  border-bottom: 1.5px solid var(--tv-gray-200);
+}
+
+.tv-faq-item__btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.tv-faq-item__question {
+  font-family: var(--tv-font-display);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--tv-black);
+  line-height: 1.3;
+}
+
+.tv-faq-item__icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.tv-faq-item__icon::before,
+.tv-faq-item__icon::after {
+  content: '';
+  position: absolute;
+  background: var(--tv-black);
+  border-radius: 1px;
+  transition: transform 0.3s var(--tv-ease), opacity 0.3s;
+}
+
+.tv-faq-item__icon::before {
+  width: 14px; height: 1.5px;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.tv-faq-item__icon::after {
+  width: 1.5px; height: 14px;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.tv-faq-item.is-open .tv-faq-item__icon::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+  opacity: 0;
+}
+
+.tv-faq-item__answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s var(--tv-ease);
+}
+
+.tv-faq-item.is-open .tv-faq-item__answer {
+  grid-template-rows: 1fr;
+}
+
+.tv-faq-item__answer-inner {
+  overflow: hidden;
+}
+
+.tv-faq-item__text {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--tv-gray-700);
+  padding-bottom: 22px;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   PRODUCT CARD ENHANCEMENTS (on collection/home grid)
+   -------------------------------------------------------------------------- */
+.tv-product-card {
+  display: block;
+  text-decoration: none;
+  position: relative;
+}
+
+.tv-product-card__media {
+  position: relative;
+  overflow: hidden;
+  background: var(--tv-gray-100);
+  aspect-ratio: 3/4;
+}
+
+.tv-product-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s var(--tv-ease);
+}
+.tv-product-card:hover .tv-product-card__img { transform: scale(1.05); }
+
+.tv-product-card__badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: var(--tv-yellow);
+  color: var(--tv-black);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border: 1px solid var(--tv-black);
+}
+
+.tv-product-card__info {
+  padding: 14px 0 0;
+}
+
+.tv-product-card__title {
+  font-family: var(--tv-font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--tv-black);
+  margin: 0 0 4px;
+  letter-spacing: 0;
+}
+
+.tv-product-card__price {
+  font-size: 0.875rem;
+  color: var(--tv-gray-700);
+}
+
+.tv-product-card__price--sale { color: var(--tv-red); }
+
+/* --------------------------------------------------------------------------
+   NEWSLETTER SECTION
+   -------------------------------------------------------------------------- */
+.tv-newsletter {
+  background: var(--tv-black);
+  padding: 80px var(--tv-gutter);
+  text-align: center;
+}
+
+.tv-newsletter__inner {
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.tv-newsletter__kicker {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--tv-yellow);
+  margin: 0 0 16px;
+}
+
+.tv-newsletter__heading {
+  font-family: var(--tv-font-display);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 700;
+  color: var(--tv-white);
+  margin: 0 0 12px;
+  line-height: 1.15;
+}
+
+.tv-newsletter__body {
+  font-size: 0.9375rem;
+  color: rgba(255,255,255,0.6);
+  margin: 0 0 36px;
+}
+
+.tv-newsletter__form {
+  display: flex;
+  gap: 0;
+  max-width: 440px;
+  margin: 0 auto;
+  border: 1.5px solid rgba(255,255,255,0.25);
+}
+
+.tv-newsletter__input {
+  flex: 1;
+  padding: 14px 18px;
+  background: transparent;
+  border: none;
+  font-family: var(--tv-font-body);
+  font-size: 0.9rem;
+  color: var(--tv-white);
+  outline: none;
+}
+
+.tv-newsletter__input::placeholder { color: rgba(255,255,255,0.35); }
+
+.tv-newsletter__submit {
+  background: var(--tv-yellow);
+  color: var(--tv-black);
+  border: none;
+  border-left: 1.5px solid rgba(255,255,255,0.25);
+  padding: 14px 22px;
+  font-family: var(--tv-font-body);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--tv-dur);
+  white-space: nowrap;
+}
+
+.tv-newsletter__submit:hover { background: var(--tv-yellow-dark); }
+
+/* --------------------------------------------------------------------------
+   TRUST BADGES / FEATURES BAR
+   -------------------------------------------------------------------------- */
+.tv-trust {
+  padding: 40px var(--tv-gutter);
+  border-top: 1px solid var(--tv-gray-200);
+  border-bottom: 1px solid var(--tv-gray-200);
+}
+
+.tv-trust__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: var(--tv-max-width);
+  margin: 0 auto;
+}
+
+.tv-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.tv-trust-item__icon {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tv-trust-item__icon svg { width: 28px; height: 28px; }
+
+.tv-trust-item__title {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--tv-black);
+  margin: 0 0 2px;
+  letter-spacing: -0.01em;
+}
+
+.tv-trust-item__sub {
+  font-size: 0.75rem;
+  color: var(--tv-gray-500);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   CART ENHANCEMENTS
+   -------------------------------------------------------------------------- */
+.tv-cart-empty {
+  text-align: center;
+  padding: 120px var(--tv-gutter);
+}
+
+.tv-cart-empty__icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 24px;
+  opacity: 0.15;
+}
+
+.tv-cart-empty__heading {
+  font-family: var(--tv-font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+
+.tv-cart-empty__body {
+  color: var(--tv-gray-700);
+  margin: 0 0 32px;
+}
+
+/* --------------------------------------------------------------------------
+   PAGE HERO (generic — About, Contact, FAQ)
+   -------------------------------------------------------------------------- */
+.tv-page-hero {
+  background: var(--tv-cream);
+  padding: 60px var(--tv-gutter) 50px;
+  border-bottom: 1px solid var(--tv-gray-200);
+}
+
+.tv-page-hero__breadcrumb {
+  font-size: 0.75rem;
+  color: var(--tv-gray-500);
+  margin: 0 0 16px;
+  letter-spacing: 0.05em;
+}
+
+.tv-page-hero__breadcrumb a {
+  color: var(--tv-gray-500);
+  text-decoration: none;
+}
+
+.tv-page-hero__heading {
+  font-family: var(--tv-font-display);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--tv-black);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE
+   -------------------------------------------------------------------------- */
+@media screen and (max-width: 1024px) {
+  .tv-hero { grid-template-columns: 1fr; min-height: auto; }
+  .tv-hero__right { height: 450px; }
+  .tv-hero__left { padding: 60px var(--tv-gutter); }
+  .tv-cats__grid { grid-template-columns: repeat(3, 1fr); }
+  .tv-reviews__grid { grid-template-columns: repeat(2, 1fr); }
+  .tv-trust__grid { grid-template-columns: repeat(2, 1fr); }
+  .tv-editorial { grid-template-columns: 1fr; }
+  .tv-editorial--reverse .tv-editorial__media { order: 0; }
+  .tv-editorial--reverse .tv-editorial__content { order: 0; }
+  .tv-editorial__media { height: 380px; }
+  .tv-contact { grid-template-columns: 1fr; }
+  .tv-values__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media screen and (max-width: 640px) {
+  .tv-cats__grid { grid-template-columns: repeat(2, 1fr); }
+  .tv-reviews__grid { grid-template-columns: 1fr; }
+  .tv-trust__grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .tv-values__grid { grid-template-columns: 1fr; }
+  .tv-newsletter__form { flex-direction: column; border: none; gap: 8px; }
+  .tv-newsletter__input {
+    border: 1.5px solid rgba(255,255,255,0.25);
+    padding: 13px 16px;
+  }
+  .tv-newsletter__submit { border-left: none; }
+  .tv-hero__actions { flex-direction: column; align-items: flex-start; }
+}

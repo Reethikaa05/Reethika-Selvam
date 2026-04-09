@@ -1,0 +1,24 @@
+{
+  "sections": {
+    "tv-about": {
+      "type": "tv-about",
+      "blocks": {
+        "v1": { "type": "value", "settings": { "value_title": "Inclusive Sizing", "value_text": "Every style available in XXS to 6XL. Because fashion is for everyone, full stop. No compromises on design or quality." } },
+        "v2": { "type": "value", "settings": { "value_title": "Ethical Production", "value_text": "All garments are crafted in certified fair-trade facilities with safe, dignified working conditions for every maker." } },
+        "v3": { "type": "value", "settings": { "value_title": "Sustainable Materials", "value_text": "We use organic, recycled, and low-impact fabrics wherever possible — and are always improving." } }
+      },
+      "block_order": ["v1","v2","v3"],
+      "settings": {
+        "hero_heading": "We Believe Fashion Should [em]Fit Everyone.[/em]",
+        "hero_body": "Tisso Vison was born from a simple belief: that style should be accessible, sustainable, and inclusive for all body types and all people.",
+        "story_kicker": "Our Origin",
+        "story_heading": "Born from a Passion for Inclusive Style",
+        "story_body": "Founded in 2019, Tisso Vison started as a small studio with one big dream: to create fashion that celebrates every body. Our founders, frustrated by a market that ignored anyone outside a narrow size range, set out to change the rules. Today, we offer every style in sizes XXS through 6XL — with zero compromises on design, quality, or fit.",
+        "editorial2_kicker": "Sustainability",
+        "editorial2_heading": "Ethical Fashion, Every Step of the Way",
+        "editorial2_body": "From organic cotton to recycled packaging, every decision we make is guided by our commitment to the planet. We partner only with certified ethical manufacturers and invest in carbon-neutral shipping for every order."
+      }
+    }
+  },
+  "order": ["tv-about"]
+}

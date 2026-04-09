@@ -1,0 +1,218 @@
+{{ 'tisso-global.css' | asset_url | stylesheet_tag }}
+
+{% comment %}
+  Section: tv-about
+  Purpose: Full editorial About Us page
+{% endcomment %}
+
+{%- comment -%} ── ABOUT HERO ───────────────────────────────── {%- endcomment -%}
+<div class="tv-about-hero">
+  <div class="tv-about-hero__bg" aria-hidden="true"></div>
+  <div class="tv-about-hero__content">
+    <h1 class="tv-about-hero__heading">
+      {{ section.settings.hero_heading | replace: '[em]', '<em>' | replace: '[/em]', '</em>' }}
+    </h1>
+    <p class="tv-about-hero__body">{{ section.settings.hero_body }}</p>
+  </div>
+</div>
+
+{%- comment -%} ── STORY SPLIT ──────────────────────────────── {%- endcomment -%}
+<div class="tv-editorial">
+  <div class="tv-editorial__media">
+    {% if section.settings.story_image != blank %}
+      <img
+        src="{{ section.settings.story_image | image_url: width: 900 }}"
+        alt="{{ section.settings.story_heading | escape }}"
+        width="900"
+        height="900"
+        loading="lazy"
+      />
+    {% else %}
+      {{ 'lifestyle-1' | placeholder_svg_tag }}
+    {% endif %}
+  </div>
+  <div class="tv-editorial__content">
+    <p class="tv-editorial__kicker">{{ section.settings.story_kicker }}</p>
+    <h2 class="tv-editorial__heading">{{ section.settings.story_heading }}</h2>
+    <p class="tv-editorial__body">{{ section.settings.story_body }}</p>
+  </div>
+</div>
+
+{%- comment -%} ── VALUES GRID ──────────────────────────────── {%- endcomment -%}
+<div class="tv-values">
+  <h2 class="tv-values__heading">What We Stand For</h2>
+  <div class="tv-values__grid">
+    {% for block in section.blocks %}
+      {% if block.type == 'value' %}
+        <div class="tv-value-item" {{ block.shopify_attributes }}>
+          <div class="tv-value-item__number">0{{ forloop.index }}</div>
+          <h3 class="tv-value-item__title">{{ block.settings.value_title }}</h3>
+          <p class="tv-value-item__text">{{ block.settings.value_text }}</p>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+{%- comment -%} ── SECOND EDITORIAL (reversed) ──────────────── {%- endcomment -%}
+{% if section.settings.editorial2_image != blank %}
+  <div class="tv-editorial tv-editorial--reverse">
+    <div class="tv-editorial__media">
+      <img
+        src="{{ section.settings.editorial2_image | image_url: width: 900 }}"
+        alt="{{ section.settings.editorial2_heading | escape }}"
+        width="900"
+        height="900"
+        loading="lazy"
+      />
+    </div>
+    <div class="tv-editorial__content">
+      <p class="tv-editorial__kicker">{{ section.settings.editorial2_kicker }}</p>
+      <h2 class="tv-editorial__heading">{{ section.settings.editorial2_heading }}</h2>
+      <p class="tv-editorial__body">{{ section.settings.editorial2_body }}</p>
+      <a href="/collections/all" class="tv-btn tv-btn--primary">
+        Shop the Collection <span class="tv-btn__arrow">→</span>
+      </a>
+    </div>
+  </div>
+{% endif %}
+
+{%- comment -%} ── NEWSLETTER ───────────────────────────────── {%- endcomment -%}
+<div class="tv-newsletter">
+  <div class="tv-newsletter__inner">
+    <p class="tv-newsletter__kicker">Stay in the Loop</p>
+    <h2 class="tv-newsletter__heading">Join Our Community</h2>
+    <p class="tv-newsletter__body">Be the first to know about new arrivals, exclusive offers, and behind-the-scenes content.</p>
+    {% form 'customer' %}
+      <input type="hidden" name="contact[tags]" value="newsletter" />
+      <div class="tv-newsletter__form">
+        <input type="email" name="contact[email]" class="tv-newsletter__input" placeholder="Enter your email" required />
+        <button type="submit" class="tv-newsletter__submit">Join Now</button>
+      </div>
+    {% endform %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "TV About Page",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header", "content": "Hero"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_heading",
+      "label": "Hero Heading (use [em] and [/em] for italic)",
+      "default": "We Believe Fashion Should [em]Fit Everyone.[/em]"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_body",
+      "label": "Hero Body",
+      "default": "Tisso Vison was born from a simple belief: that style should be accessible, sustainable, and inclusive for all body types and all people."
+    },
+    {
+      "type": "header", "content": "Brand Story"
+    },
+    {
+      "type": "image_picker",
+      "id": "story_image",
+      "label": "Story Image"
+    },
+    {
+      "type": "text",
+      "id": "story_kicker",
+      "label": "Kicker",
+      "default": "Our Origin"
+    },
+    {
+      "type": "text",
+      "id": "story_heading",
+      "label": "Heading",
+      "default": "Born from a Passion for Inclusive Style"
+    },
+    {
+      "type": "textarea",
+      "id": "story_body",
+      "label": "Body",
+      "default": "Founded in 2019, Tisso Vison started as a small studio with one big dream: to create fashion that celebrates every body. Our founders, frustrated by a market that ignored anyone outside a narrow size range, set out to change the rules. Today, we offer every style in sizes XXS through 6XL — with zero compromises on design, quality, or fit."
+    },
+    {
+      "type": "header", "content": "Second Editorial"
+    },
+    {
+      "type": "image_picker",
+      "id": "editorial2_image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "editorial2_kicker",
+      "label": "Kicker",
+      "default": "Sustainability"
+    },
+    {
+      "type": "text",
+      "id": "editorial2_heading",
+      "label": "Heading",
+      "default": "Ethical Fashion, Every Step of the Way"
+    },
+    {
+      "type": "textarea",
+      "id": "editorial2_body",
+      "label": "Body",
+      "default": "From organic cotton to recycled packaging, every decision we make is guided by our commitment to the planet. We partner only with certified ethical manufacturers and invest in carbon-neutral shipping for every order."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "value",
+      "name": "Brand Value",
+      "settings": [
+        {
+          "type": "text",
+          "id": "value_title",
+          "label": "Title",
+          "default": "Inclusive Sizing"
+        },
+        {
+          "type": "textarea",
+          "id": "value_text",
+          "label": "Description",
+          "default": "Every style available in XXS to 6XL. Because fashion is for everyone."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TV About Page",
+      "blocks": [
+        {
+          "type": "value",
+          "settings": {
+            "value_title": "Inclusive Sizing",
+            "value_text": "Every style available in XXS to 6XL. Because fashion is for everyone, full stop."
+          }
+        },
+        {
+          "type": "value",
+          "settings": {
+            "value_title": "Ethical Production",
+            "value_text": "All garments are crafted in certified fair-trade facilities with safe, fair working conditions."
+          }
+        },
+        {
+          "type": "value",
+          "settings": {
+            "value_title": "Sustainable Materials",
+            "value_text": "We use organic, recycled, and low-impact fabrics wherever possible."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

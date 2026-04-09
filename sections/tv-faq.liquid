@@ -1,0 +1,127 @@
+{{ 'tisso-global.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'tisso-site.js' | asset_url }}" defer></script>
+
+{% comment %}
+  Section: tv-faq
+  Purpose: Beautiful FAQ page with animated accordion
+{% endcomment %}
+
+<div class="tv-faq">
+
+  <h1 class="tv-faq__heading">{{ section.settings.heading }}</h1>
+  <p class="tv-faq__subheading">{{ section.settings.subheading }}</p>
+
+  {% for block in section.blocks %}
+    {% if block.type == 'faq_item' %}
+      <div class="tv-faq-item" {{ block.shopify_attributes }}>
+        <button class="tv-faq-item__btn" aria-expanded="false">
+          <span class="tv-faq-item__question">{{ block.settings.question }}</span>
+          <span class="tv-faq-item__icon" aria-hidden="true"></span>
+        </button>
+        <div class="tv-faq-item__answer" aria-hidden="true">
+          <div class="tv-faq-item__answer-inner">
+            <p class="tv-faq-item__text">{{ block.settings.answer }}</p>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+
+</div>
+
+{% schema %}
+{
+  "name": "TV FAQ Page",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Page Heading",
+      "default": "Frequently Asked Questions"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Can't find the answer? Contact our support team and we'll get back to you within 24 hours."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "What sizes do you offer?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer",
+          "default": "We offer all styles in sizes XXS through 6XL. Our size guide is available on every product page to help you find the perfect fit."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TV FAQ Page",
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "What sizes do you offer?",
+            "answer": "We offer all styles in sizes XXS through 6XL. Our size guide is available on every product page to help you find the perfect fit. We believe fashion is for every body."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "How long does shipping take?",
+            "answer": "Standard shipping takes 3–5 business days. Express shipping (1–2 business days) is available at checkout. Free standard shipping on all orders over $75."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is your return policy?",
+            "answer": "We offer free returns within 30 days of delivery. Items must be unworn, unwashed, and in their original packaging with tags attached. Start your return from your account dashboard."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I track my order?",
+            "answer": "Once your order ships, you'll receive a confirmation email with your tracking number. You can also check your order status in your account dashboard at any time."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are your products sustainably made?",
+            "answer": "Yes! We use organic, recycled, and low-impact fabrics and work exclusively with certified ethical manufacturers. We're also carbon-neutral for all our shipments."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I change or cancel my order?",
+            "answer": "Orders can be modified or cancelled within 1 hour of placement. After that, we begin processing and may not be able to make changes. Please contact us immediately at hello@tissovison.com."
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do you ship internationally?",
+            "answer": "Yes! We ship to over 50 countries worldwide. International shipping rates and delivery times vary by destination and are calculated at checkout."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

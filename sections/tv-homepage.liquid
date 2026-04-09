@@ -1,0 +1,424 @@
+{{ 'tisso-global.css' | asset_url | stylesheet_tag }}
+{{ 'tisso-site.js' | asset_url | script_tag }}
+
+{% comment %}
+  ============================================================
+  Section: tv-homepage
+  Purpose: Full-featured editorial homepage
+  Includes: Hero, trust bar, categories, editorial block,
+            testimonials, newsletter
+  ============================================================
+{% endcomment %}
+
+{%- assign featured_collection = section.settings.featured_collection -%}
+{%- assign featured_collection_2 = section.settings.featured_collection_2 -%}
+
+{%- comment -%} ── HERO ─────────────────────────────────────── {%- endcomment -%}
+<div class="tv-hero">
+  <div class="tv-hero__left">
+    <p class="tv-hero__eyebrow">{{ section.settings.hero_eyebrow }}</p>
+    <h1 class="tv-hero__heading">
+      {{ section.settings.hero_heading | newline_to_br }}
+    </h1>
+    <p class="tv-hero__body">{{ section.settings.hero_body }}</p>
+    <div class="tv-hero__actions">
+      <a href="{{ section.settings.hero_cta_url }}" class="tv-btn tv-btn--primary">
+        {{ section.settings.hero_cta_label }}
+        <span class="tv-btn__arrow">→</span>
+      </a>
+      <a href="{{ section.settings.hero_cta2_url }}" class="tv-btn tv-btn--outline">
+        {{ section.settings.hero_cta2_label }}
+      </a>
+    </div>
+  </div>
+  <div class="tv-hero__right">
+    {% if section.settings.hero_image != blank %}
+      <img
+        src="{{ section.settings.hero_image | image_url: width: 1200 }}"
+        alt="{{ section.settings.hero_image.alt | default: 'Hero image' }}"
+        width="1200"
+        height="1400"
+        loading="eager"
+        fetchpriority="high"
+      />
+    {% else %}
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    {% endif %}
+    <div class="tv-hero__tag">{{ section.settings.hero_tag }}</div>
+  </div>
+</div>
+
+{%- comment -%} ── TRUST BAR ────────────────────────────────── {%- endcomment -%}
+<div class="tv-trust">
+  <div class="tv-trust__grid">
+    <div class="tv-trust-item">
+      <span class="tv-trust-item__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </span>
+      <div>
+        <p class="tv-trust-item__title">Free Shipping</p>
+        <p class="tv-trust-item__sub">On orders over $75</p>
+      </div>
+    </div>
+    <div class="tv-trust-item">
+      <span class="tv-trust-item__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+      </span>
+      <div>
+        <p class="tv-trust-item__title">Easy Returns</p>
+        <p class="tv-trust-item__sub">30-day hassle-free returns</p>
+      </div>
+    </div>
+    <div class="tv-trust-item">
+      <span class="tv-trust-item__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+        </svg>
+      </span>
+      <div>
+        <p class="tv-trust-item__title">Secure Payment</p>
+        <p class="tv-trust-item__sub">256-bit SSL encryption</p>
+      </div>
+    </div>
+    <div class="tv-trust-item">
+      <span class="tv-trust-item__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+        </svg>
+      </span>
+      <div>
+        <p class="tv-trust-item__title">24/7 Support</p>
+        <p class="tv-trust-item__sub">We're always here for you</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{%- comment -%} ── MARQUEE ──────────────────────────────────── {%- endcomment -%}
+<div class="tv-marquee">
+  <div class="tv-marquee__track" aria-hidden="true">
+    {% for i in (1..6) %}
+      <span class="tv-marquee__item">New Arrivals</span>
+      <span class="tv-marquee__dot">✦</span>
+      <span class="tv-marquee__item">Sustainable Fashion</span>
+      <span class="tv-marquee__dot">✦</span>
+      <span class="tv-marquee__item">Sizes XXS – 6XL</span>
+      <span class="tv-marquee__dot">✦</span>
+      <span class="tv-marquee__item">Free Returns</span>
+      <span class="tv-marquee__dot">✦</span>
+    {% endfor %}
+  </div>
+</div>
+
+{%- comment -%} ── SHOP BY CATEGORY ─────────────────────────── {%- endcomment -%}
+{% if section.blocks.size > 0 %}
+  <div class="tv-cats">
+    <p class="tv-cats__label">Shop by Category</p>
+    <div class="tv-cats__grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'category' %}
+          <a href="{{ block.settings.category_url }}" class="tv-cats__item" {{ block.shopify_attributes }}>
+            {% if block.settings.category_image != blank %}
+              <img
+                src="{{ block.settings.category_image | image_url: width: 400 }}"
+                alt="{{ block.settings.category_name }}"
+                class="tv-cats__item-img"
+                width="400"
+                height="533"
+                loading="lazy"
+              />
+            {% else %}
+              {{ 'image' | placeholder_svg_tag: 'tv-cats__item-img' }}
+            {% endif %}
+            <div class="tv-cats__item-overlay">
+              <span class="tv-cats__item-name">{{ block.settings.category_name }}</span>
+            </div>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+{%- comment -%} ── EDITORIAL SPLIT — Story block ────────────── {%- endcomment -%}
+{% if section.settings.editorial_image != blank or section.settings.editorial_heading != blank %}
+  <div class="tv-editorial">
+    <div class="tv-editorial__media">
+      {% if section.settings.editorial_image != blank %}
+        <img
+          src="{{ section.settings.editorial_image | image_url: width: 900 }}"
+          alt="{{ section.settings.editorial_heading | escape }}"
+          width="900"
+          height="900"
+          loading="lazy"
+        />
+      {% else %}
+        {{ 'lifestyle-2' | placeholder_svg_tag }}
+      {% endif %}
+    </div>
+    <div class="tv-editorial__content">
+      <p class="tv-editorial__kicker">{{ section.settings.editorial_kicker }}</p>
+      <h2 class="tv-editorial__heading">{{ section.settings.editorial_heading }}</h2>
+      <p class="tv-editorial__body">{{ section.settings.editorial_body }}</p>
+      <a href="{{ section.settings.editorial_url }}" class="tv-btn tv-btn--outline">
+        {{ section.settings.editorial_cta }}
+        <span class="tv-btn__arrow">→</span>
+      </a>
+    </div>
+  </div>
+{% endif %}
+
+{%- comment -%} ── TESTIMONIALS ─────────────────────────────── {%- endcomment -%}
+<div class="tv-reviews">
+  <div class="tv-reviews__inner">
+    <h2 class="tv-reviews__heading">What Our Customers Say</h2>
+    <div class="tv-reviews__grid">
+      {% for block in section.blocks %}
+        {% if block.type == 'review' %}
+          <div class="tv-review-card" {{ block.shopify_attributes }}>
+            <div class="tv-review-card__stars">
+              {% for i in (1..5) %}<span class="tv-review-card__star">★</span>{% endfor %}
+            </div>
+            <p class="tv-review-card__text">"{{ block.settings.review_text }}"</p>
+            <p class="tv-review-card__author">— {{ block.settings.review_author }}</p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{%- comment -%} ── NEWSLETTER ───────────────────────────────── {%- endcomment -%}
+<div class="tv-newsletter">
+  <div class="tv-newsletter__inner">
+    <p class="tv-newsletter__kicker">Join the Club</p>
+    <h2 class="tv-newsletter__heading">Get 10% off your first order</h2>
+    <p class="tv-newsletter__body">Subscribe for exclusive deals, new arrivals, and style inspiration.</p>
+    {% form 'customer', id: 'tv-newsletter-form' %}
+      <input type="hidden" name="contact[tags]" value="newsletter" />
+      <div class="tv-newsletter__form">
+        <input
+          type="email"
+          name="contact[email]"
+          class="tv-newsletter__input"
+          placeholder="Your email address"
+          required
+          autocomplete="email"
+        />
+        <button type="submit" class="tv-newsletter__submit">Subscribe</button>
+      </div>
+    {% endform %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "TV Homepage",
+  "tag": "section",
+  "class": "tv-homepage-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero"
+    },
+    {
+      "type": "text",
+      "id": "hero_eyebrow",
+      "label": "Eyebrow Text",
+      "default": "New Season · New Style"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_heading",
+      "label": "Heading (use newline for line break)",
+      "default": "Style That\nSpeaks For\nItself."
+    },
+    {
+      "type": "textarea",
+      "id": "hero_body",
+      "label": "Body Text",
+      "default": "Discover our latest collection of sustainable, ethically-made fashion in sizes XXS to 6XL. Something for every body, every occasion."
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Image"
+    },
+    {
+      "type": "text",
+      "id": "hero_tag",
+      "label": "Floating Tag Text",
+      "default": "Now in 6XL"
+    },
+    {
+      "type": "text",
+      "id": "hero_cta_label",
+      "label": "Primary CTA Label",
+      "default": "Shop New Arrivals"
+    },
+    {
+      "type": "url",
+      "id": "hero_cta_url",
+      "label": "Primary CTA URL"
+    },
+    {
+      "type": "text",
+      "id": "hero_cta2_label",
+      "label": "Secondary CTA Label",
+      "default": "Explore Lookbook"
+    },
+    {
+      "type": "url",
+      "id": "hero_cta2_url",
+      "label": "Secondary CTA URL"
+    },
+    {
+      "type": "header",
+      "content": "Editorial Block"
+    },
+    {
+      "type": "image_picker",
+      "id": "editorial_image",
+      "label": "Editorial Image"
+    },
+    {
+      "type": "text",
+      "id": "editorial_kicker",
+      "label": "Kicker",
+      "default": "Our Story"
+    },
+    {
+      "type": "text",
+      "id": "editorial_heading",
+      "label": "Heading",
+      "default": "Fashion With a Conscience"
+    },
+    {
+      "type": "textarea",
+      "id": "editorial_body",
+      "label": "Body",
+      "default": "We believe fashion should empower everyone. That's why every piece in our collection is made ethically, sustainably, and in a full range of sizes — because style has no size limit."
+    },
+    {
+      "type": "text",
+      "id": "editorial_cta",
+      "label": "Button Label",
+      "default": "Our Story"
+    },
+    {
+      "type": "url",
+      "id": "editorial_url",
+      "label": "Button URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "category_image",
+          "label": "Category Image"
+        },
+        {
+          "type": "text",
+          "id": "category_name",
+          "label": "Category Name",
+          "default": "Jackets"
+        },
+        {
+          "type": "url",
+          "id": "category_url",
+          "label": "Category URL"
+        }
+      ]
+    },
+    {
+      "type": "review",
+      "name": "Customer Review",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "review_text",
+          "label": "Review Text",
+          "default": "Absolutely love my purchase! The quality is incredible and it fits perfectly. Will definitely be ordering again."
+        },
+        {
+          "type": "text",
+          "id": "review_author",
+          "label": "Customer Name",
+          "default": "Sarah M."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TV Homepage",
+      "blocks": [
+        {
+          "type": "category",
+          "settings": {
+            "category_name": "Jackets",
+            "category_url": "/collections/jackets"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "category_name": "Dresses",
+            "category_url": "/collections/dresses"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "category_name": "Bags",
+            "category_url": "/collections/bags"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "category_name": "Tops",
+            "category_url": "/collections/tops"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "category_name": "Accessories",
+            "category_url": "/collections/accessories"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "review_text": "Absolutely love my new jacket! The quality is incredible and it fits perfectly. Will definitely be ordering again.",
+            "review_author": "Sarah M."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "review_text": "Fast shipping, beautiful packaging, and the product is even better in person. This is my new favourite brand!",
+            "review_author": "James K."
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "review_text": "Finally a brand that caters to all sizes without compromising on style. I felt amazing in my outfit.",
+            "review_author": "Priya R."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

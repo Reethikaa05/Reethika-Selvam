@@ -1,0 +1,190 @@
+{{ 'tisso-global.css' | asset_url | stylesheet_tag }}
+
+{% comment %}
+  Section: tv-contact
+  Purpose: Beautiful split-layout contact page
+{% endcomment %}
+
+<div class="tv-contact">
+
+  {%- comment -%} ── LEFT: Brand info panel ────────────────── {%- endcomment -%}
+  <div class="tv-contact__left">
+    <h1 class="tv-contact__heading">
+      {{ section.settings.heading | replace: '[em]', '<em>' | replace: '[/em]', '</em>' }}
+    </h1>
+    <p style="color: rgba(255,255,255,0.65); font-size: 0.9375rem; line-height: 1.65; margin: 0;">
+      {{ section.settings.intro }}
+    </p>
+
+    <div class="tv-contact__info">
+      <div class="tv-contact__info-item">
+        <p class="tv-contact__info-label">Email</p>
+        <p class="tv-contact__info-value">
+          <a href="mailto:{{ section.settings.email }}" style="color: inherit; text-decoration: none;">
+            {{ section.settings.email }}
+          </a>
+        </p>
+      </div>
+      <div class="tv-contact__info-item">
+        <p class="tv-contact__info-label">Phone</p>
+        <p class="tv-contact__info-value">{{ section.settings.phone }}</p>
+      </div>
+      <div class="tv-contact__info-item">
+        <p class="tv-contact__info-label">Hours</p>
+        <p class="tv-contact__info-value">{{ section.settings.hours }}</p>
+      </div>
+      <div class="tv-contact__info-item">
+        <p class="tv-contact__info-label">Response Time</p>
+        <p class="tv-contact__info-value">{{ section.settings.response_time }}</p>
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} ── RIGHT: Contact form ───────────────────── {%- endcomment -%}
+  <div class="tv-contact__right">
+    <div class="tv-contact__form">
+      <h2 style="font-family: var(--tv-font-display); font-size: 1.75rem; font-weight: 700; margin: 0 0 8px; color: var(--tv-black);">
+        Send us a message
+      </h2>
+      <p style="font-size: 0.875rem; color: var(--tv-gray-500); margin: 0 0 32px;">
+        We'll get back to you within {{ section.settings.response_time | downcase }}
+      </p>
+
+      {% form 'contact', id: 'tv-contact-form' %}
+
+        {% if form.posted_successfully? %}
+          <div style="background: #e8f5e9; border: 1px solid #4caf50; padding: 16px 20px; margin-bottom: 24px; font-size: 0.9rem; color: #2e7d32;">
+            ✓ Thank you! We've received your message and will be in touch shortly.
+          </div>
+        {% endif %}
+
+        {% if form.errors %}
+          <div style="background: #ffebee; border: 1px solid #ef9a9a; padding: 16px 20px; margin-bottom: 24px; font-size: 0.9rem; color: #c62828;">
+            Please correct the errors below.
+          </div>
+        {% endif %}
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+          <div class="tv-form-group">
+            <label class="tv-form-label" for="ContactForm-name">First Name</label>
+            <input
+              type="text"
+              id="ContactForm-name"
+              name="contact[first_name]"
+              class="tv-form-input"
+              value="{{ form.name }}"
+              autocomplete="given-name"
+              placeholder="Jane"
+              required
+            />
+          </div>
+          <div class="tv-form-group">
+            <label class="tv-form-label" for="ContactForm-last">Last Name</label>
+            <input
+              type="text"
+              id="ContactForm-last"
+              name="contact[last_name]"
+              class="tv-form-input"
+              value=""
+              autocomplete="family-name"
+              placeholder="Smith"
+            />
+          </div>
+        </div>
+
+        <div class="tv-form-group" style="margin-bottom: 16px;">
+          <label class="tv-form-label" for="ContactForm-email">Email *</label>
+          <input
+            type="email"
+            id="ContactForm-email"
+            name="contact[email]"
+            class="tv-form-input{% if form.errors contains 'email' %} is-error{% endif %}"
+            value="{{ form.email }}"
+            autocomplete="email"
+            placeholder="jane@example.com"
+            required
+          />
+        </div>
+
+        <div class="tv-form-group" style="margin-bottom: 16px;">
+          <label class="tv-form-label" for="ContactForm-subject">Subject</label>
+          <select id="ContactForm-subject" name="contact[subject]" class="tv-form-input" style="cursor: pointer;">
+            <option value="">Select a topic…</option>
+            <option value="Order enquiry">Order Enquiry</option>
+            <option value="Returns & exchanges">Returns & Exchanges</option>
+            <option value="Sizing help">Sizing Help</option>
+            <option value="Product question">Product Question</option>
+            <option value="Wholesale">Wholesale</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="tv-form-group" style="margin-bottom: 28px;">
+          <label class="tv-form-label" for="ContactForm-body">Message *</label>
+          <textarea
+            id="ContactForm-body"
+            name="contact[body]"
+            class="tv-form-textarea"
+            placeholder="Tell us how we can help…"
+            required
+          >{{ form.body }}</textarea>
+        </div>
+
+        <button type="submit" class="tv-btn tv-btn--primary" style="width: 100%; justify-content: center;">
+          Send Message
+          <span class="tv-btn__arrow">→</span>
+        </button>
+
+      {% endform %}
+    </div>
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "TV Contact Page",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading (use [em]/[/em] for italic)",
+      "default": "Let's [em]Talk.[/em]"
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Intro text",
+      "default": "Have a question about sizing, an order, or just want to say hello? Our team is here to help."
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Contact Email",
+      "default": "hello@tissovison.com"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone",
+      "default": "+1 (800) 555-0123"
+    },
+    {
+      "type": "text",
+      "id": "hours",
+      "label": "Business Hours",
+      "default": "Mon–Fri, 9am–6pm EST"
+    },
+    {
+      "type": "text",
+      "id": "response_time",
+      "label": "Response Time",
+      "default": "24–48 hours"
+    }
+  ],
+  "presets": [
+    { "name": "TV Contact Page" }
+  ]
+}
+{% endschema %}

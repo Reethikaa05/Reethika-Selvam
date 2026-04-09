@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "tv-contact": {
+      "type": "tv-contact",
+      "settings": {
+        "heading": "Let's [em]Talk.[/em]",
+        "intro": "Have a question about sizing, an order, or just want to say hello? Our team is here to help — and we actually respond.",
+        "email": "hello@tissovison.com",
+        "phone": "+1 (800) 555-0123",
+        "hours": "Mon–Fri, 9am–6pm EST",
+        "response_time": "24–48 hours"
+      }
+    }
+  },
+  "order": ["tv-contact"]
+}

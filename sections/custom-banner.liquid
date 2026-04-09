@@ -1,0 +1,167 @@
+{{ 'custom-page.css' | asset_url | stylesheet_tag }}
+
+{% comment %}
+  ============================================================
+  Section: custom-banner
+  Purpose: Hero banner — "The Gift Guide" layout
+  Matches Figma: Tisso Vison test design
+  Structure:
+    - Top nav bar: logo | tagline | CTA button
+    - Hero area: heading + body text + CTA over illustrated BG
+    - Bottom ticker strip: scrolling text
+  All red-rectangle text fields are editable from customizer.
+  ============================================================
+{% endcomment %}
+
+<section class="cb" id="cb-{{ section.id }}">
+
+  {%- comment -%} ── TOP NAV BAR ──────────────────────────────── {%- endcomment -%}
+  <div class="cb__nav">
+    <span class="cb__logo">{{ section.settings.logo_text }}</span>
+    <span class="cb__tagline">{{ section.settings.tagline }}</span>
+    <a
+      href="{{ section.settings.nav_button_url }}"
+      class="cb__nav-btn"
+      aria-label="{{ section.settings.nav_button_label }}"
+    >
+      {{ section.settings.nav_button_label }}
+      <span class="cb__nav-btn-arrow" aria-hidden="true">→</span>
+    </a>
+  </div>
+
+  {%- comment -%} ── HERO AREA ────────────────────────────────── {%- endcomment -%}
+  <div class="cb__hero">
+
+    {%- comment -%} Background image (illustrated line-art) {%- endcomment -%}
+    <div class="cb__hero-bg" aria-hidden="true">
+      {% if section.settings.hero_background != blank %}
+        <img
+          src="{{ section.settings.hero_background | image_url: width: 1920 }}"
+          alt=""
+          width="1920"
+          height="900"
+          loading="eager"
+          class="cb__hero-bg-img"
+        />
+      {% else %}
+        {%- comment -%} SVG placeholder that mimics the illustrated line-art feel {%- endcomment -%}
+        <div class="cb__hero-bg-placeholder"></div>
+      {% endif %}
+    </div>
+
+    {%- comment -%} Content overlay — left side {%- endcomment -%}
+    <div class="cb__hero-content">
+      <h1 class="cb__hero-heading">{{ section.settings.hero_heading }}</h1>
+      <p class="cb__hero-body">{{ section.settings.hero_body }}</p>
+      <a
+        href="{{ section.settings.hero_button_url }}"
+        class="cb__hero-btn"
+        aria-label="{{ section.settings.hero_button_label }}"
+      >
+        {{ section.settings.hero_button_label }}
+        <span class="cb__hero-btn-arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+
+  </div>
+
+  {%- comment -%} ── TICKER / MARQUEE STRIP ───────────────────── {%- endcomment -%}
+  <div class="cb__ticker" aria-label="{{ section.settings.ticker_text }}">
+    <div class="cb__ticker-track" aria-hidden="true">
+      {%- comment -%} Duplicate for seamless loop {%- endcomment -%}
+      {%- for i in (1..4) -%}
+        <span class="cb__ticker-item">{{ section.settings.ticker_text }}</span>
+        <span class="cb__ticker-sep" aria-hidden="true">·</span>
+      {%- endfor -%}
+    </div>
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "Custom Banner",
+  "tag": "section",
+  "class": "custom-banner-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Top Navigation Bar"
+    },
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo / Brand Name",
+      "default": "TISSO VISON"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Centre Tagline",
+      "default": "Find the ideal gift for your loved ones."
+    },
+    {
+      "type": "text",
+      "id": "nav_button_label",
+      "label": "Nav Button Label",
+      "default": "CHOOSE GIFT"
+    },
+    {
+      "type": "url",
+      "id": "nav_button_url",
+      "label": "Nav Button URL"
+    },
+    {
+      "type": "header",
+      "content": "Hero Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_background",
+      "label": "Background Image (line-art illustration recommended)"
+    },
+    {
+      "type": "header",
+      "content": "Hero Text"
+    },
+    {
+      "type": "text",
+      "id": "hero_heading",
+      "label": "Main Heading",
+      "default": "The Gift Guide"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_body",
+      "label": "Body Text",
+      "default": "Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season."
+    },
+    {
+      "type": "text",
+      "id": "hero_button_label",
+      "label": "Hero Button Label",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "hero_button_url",
+      "label": "Hero Button URL"
+    },
+    {
+      "type": "header",
+      "content": "Bottom Ticker"
+    },
+    {
+      "type": "text",
+      "id": "ticker_text",
+      "label": "Ticker Text",
+      "default": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Banner"
+    }
+  ]
+}
+{% endschema %}

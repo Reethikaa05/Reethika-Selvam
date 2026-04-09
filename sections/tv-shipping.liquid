@@ -1,0 +1,67 @@
+{{ 'tisso-global.css' | asset_url | stylesheet_tag }}
+<style>
+.tvs{font-family:var(--tv-font-body)}
+.tvs__hero{background:var(--tv-black);padding:80px var(--tv-gutter)}
+.tvs__hero h1{font-family:var(--tv-font-display);font-size:clamp(2.5rem,5vw,4rem);font-weight:900;color:var(--tv-white);letter-spacing:-0.03em;margin:0 0 12px;line-height:1}
+.tvs__hero h1 em{font-style:italic;color:var(--tv-yellow)}
+.tvs__hero p{color:rgba(255,255,255,0.6);margin:0;font-size:1rem}
+.tvs__cards{max-width:var(--tv-max-width);margin:0 auto;padding:64px var(--tv-gutter);display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.tvs__card{background:var(--tv-cream);padding:36px 32px}
+.tvs__icon{font-size:2rem;margin-bottom:16px}
+.tvs__card h2{font-family:var(--tv-font-display);font-size:1.375rem;font-weight:700;color:var(--tv-black);margin:0 0 14px}
+.tvs__card p,.tvs__card li{font-size:.9rem;line-height:1.7;color:var(--tv-gray-700)}
+.tvs__card ul{padding-left:20px;margin:12px 0 0}
+.tvs__card li{margin-bottom:6px}
+.tvs__rates{max-width:var(--tv-max-width);margin:0 auto;padding:0 var(--tv-gutter) 64px}
+.tvs__rates h2{font-family:var(--tv-font-display);font-size:1.75rem;font-weight:700;margin:0 0 24px}
+.tvs__table{width:100%;border-collapse:collapse;font-size:.875rem}
+.tvs__table th{background:var(--tv-black);color:var(--tv-white);padding:12px 16px;text-align:left;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.tvs__table td{padding:14px 16px;border-bottom:1px solid var(--tv-gray-200);color:var(--tv-black)}
+.tvs__table tr:hover td{background:var(--tv-cream)}
+.tvs__cta{background:var(--tv-cream);padding:64px var(--tv-gutter);text-align:center}
+.tvs__cta h2{font-family:var(--tv-font-display);font-size:2rem;font-weight:700;margin:0 0 12px}
+.tvs__cta p{color:var(--tv-gray-700);margin:0 0 28px}
+@media(max-width:640px){.tvs__cards{grid-template-columns:1fr}}
+</style>
+
+<div class="tvs">
+  <div class="tvs__hero">
+    <h1>Shipping <em>&amp; Returns</em></h1>
+    <p>Fast, transparent, and always stress-free.</p>
+  </div>
+
+  <div class="tvs__cards">
+    <div class="tvs__card"><div class="tvs__icon">🚚</div><h2>Shipping</h2><p>We ship from warehouses in New York, London, and Berlin.</p><ul><li>Free standard shipping on orders over $75</li><li>Standard: 3–5 business days</li><li>Express: 1–2 business days</li><li>Same-day in NYC and London</li><li>Ships to 50+ countries</li></ul></div>
+    <div class="tvs__card"><div class="tvs__icon">↩️</div><h2>Free Returns</h2><p>Changed your mind? No problem — hassle-free returns within 30 days.</p><ul><li>Free returns within 30 days of delivery</li><li>Items must be unworn with original tags attached</li><li>Refund processed within 5–7 business days</li><li>Exchange for a different size or colour</li><li>Start a return from your account dashboard</li></ul></div>
+    <div class="tvs__card"><div class="tvs__icon">🌍</div><h2>International</h2><p>We ship globally! Duties may apply depending on your country.</p><ul><li>International tracked shipping available</li><li>Delivery: 7–14 business days</li><li>Duties calculated at checkout where possible</li><li>Live currency conversion at checkout</li></ul></div>
+    <div class="tvs__card"><div class="tvs__icon">♻️</div><h2>Eco Packaging</h2><p>100% recycled and recyclable. No plastic. Ever.</p><ul><li>100% recycled cardboard boxes</li><li>Recycled tissue paper wrapping</li><li>Zero plastic padding</li><li>Carbon-neutral shipping on every order</li></ul></div>
+  </div>
+
+  <div class="tvs__rates">
+    <h2>Shipping Rates</h2>
+    <table class="tvs__table">
+      <thead><tr><th>Region</th><th>Method</th><th>Delivery Time</th><th>Cost</th></tr></thead>
+      <tbody>
+        <tr><td>United States</td><td>Standard</td><td>3–5 business days</td><td>Free over $75 / $5.99</td></tr>
+        <tr><td>United States</td><td>Express</td><td>1–2 business days</td><td>$14.99</td></tr>
+        <tr><td>United States</td><td>Same Day (NYC)</td><td>Same day by 8pm</td><td>$24.99</td></tr>
+        <tr><td>United Kingdom</td><td>Standard</td><td>2–4 business days</td><td>Free over £60 / £4.99</td></tr>
+        <tr><td>United Kingdom</td><td>Next Day</td><td>Next business day</td><td>£9.99</td></tr>
+        <tr><td>Europe</td><td>Standard</td><td>4–7 business days</td><td>€6.99</td></tr>
+        <tr><td>Europe</td><td>Express</td><td>2–3 business days</td><td>€14.99</td></tr>
+        <tr><td>Rest of World</td><td>Standard</td><td>7–14 business days</td><td>$12.99</td></tr>
+        <tr><td>Rest of World</td><td>Express</td><td>3–5 business days</td><td>$24.99</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tvs__cta">
+    <h2>Questions? We're here.</h2>
+    <p>Our customer care team is available Monday–Friday, 9am–6pm EST.</p>
+    <a href="/pages/contact" class="tv-btn tv-btn--primary">Contact Us <span class="tv-btn__arrow">→</span></a>
+  </div>
+</div>
+
+{% schema %}
+{"name":"TV Shipping","tag":"section","settings":[],"presets":[{"name":"TV Shipping & Returns"}]}
+{% endschema %}
