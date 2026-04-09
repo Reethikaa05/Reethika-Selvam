@@ -16,6 +16,11 @@
         class="cart-page spacing-style{% if cart.empty? %} cart-page--empty{% endif %}"
         style="{% render 'spacing-style', settings: section.settings %}"
       >
+        {% if cart.empty? %}
+          <div style="text-align: center; margin-bottom: 2rem;">
+            <img src="https://images.unsplash.com/photo-1555529733-0e670560f4e1?auto=format&fit=crop&w=600&q=80" alt="Empty Cart Shopping Bags" style="width: 100%; max-width: 400px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" />
+          </div>
+        {% endif %}
         <div class="cart-page__title">
           {%- content_for 'block', id: 'cart-page-title', type: '_cart-title', force_empty: true %}
         </div>
@@ -36,6 +41,11 @@
       class="cart-page spacing-style{% if cart.empty? %} cart-page--empty{% endif %}"
       style="{% render 'spacing-style', settings: section.settings %}"
     >
+      {% if cart.empty? %}
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <img src="https://images.unsplash.com/photo-1555529733-0e670560f4e1?auto=format&fit=crop&w=600&q=80" alt="Empty Cart Shopping Bags" style="width: 100%; max-width: 400px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);" />
+        </div>
+      {% endif %}
       <div class="cart-page__title">
         {%- content_for 'block', id: 'cart-page-title', type: '_cart-title' %}
       </div>

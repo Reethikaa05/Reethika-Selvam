@@ -1,153 +1,142 @@
-# Reethika-Selvam — EcomExperts Shopify Hiring Test
+<div align="center">
 
-## 📦 Repository
-[GitHub Repository](https://github.com/Reethikaa05/Reethika-Selvam)
+# ✨ Tisso Vision Theme ✨
+**EcomExperts Shopify Developer Assessment by Reethika Selvam**
 
-## 🖼️ Banner
-![Banner](https://via.placeholder.com/800x200/333333/FFFFFF?text=Banner)
+![Banner](https://via.placeholder.com/800x200/1a1a1a/ffffff?text=Tisso+Vision+Theme+Project)
 
-## 🏪 Live Store
-[View on Shopify](https://reethika-selvam-s-48-teststore.myshopify.com) ← Live store URL
+[![View Live Store](https://img.shields.io/badge/Shopify-Live_Store-96bf48?style=for-the-badge&logo=shopify)](https://reethika-selvam-s-48-teststore.myshopify.com)
+[![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/Reethikaa05/Reethika-Selvam)
 
-## 📋 Assignment
-Implement a Figma design as a Shopify page using custom sections from scratch.  
-No jQuery. No ready-made Dawn sections. All built from scratch.
+*A premium, high-fidelity Shopify implementation of a custom Figma design built completely from scratch using Modern Web Standards and Online Store 2.0 Architecture.*
 
-## ✅ What Was Built
-
-### Figma Assignment (Part Five)
-| Feature | Status |
-|---------|--------|
-| Banner section — all text editable from customizer | ✅ |
-| Animated shimmer + lift on buttons | ✅ |
-| Scrolling ticker strip at bottom | ✅ |
-| 6-product grid selectable from customizer | ✅ |
-| Pulsing dot indicator on each card | ✅ |
-| Popup with name, price, description, variants | ✅ |
-| Dynamic variant rendering from product JSON | ✅ |
-| Add to Cart via Shopify AJAX API | ✅ |
-| Auto-add "Soft Winter Jacket" on Black + Medium | ✅ |
-| Mobile responsive | ✅ |
-| Zero jQuery — vanilla JS only | ✅ |
-| JSDoc comments on all functions | ✅ |
-
-### Extra Pages Built
-| Page | Template |
-|------|----------|
-| Homepage | `index.json` |
-| Gift Guide (Figma) | `page.gift-guide.json` |
-| About Us | `page.about.json` |
-| Contact | `page.contact.json` |
-| FAQ | `page.faq.json` |
-| Size Guide | `page.size-guide.json` |
-| Shipping & Returns | `page.shipping.json` |
-
-## 🗂️ New Files Added
-```
-sections/
-├── custom-banner.liquid        ← Gift Guide Banner (Figma)
-├── custom-product-grid.liquid  ← Gift Guide Grid + Popup (Figma)
-├── tv-homepage.liquid          ← Homepage
-├── tv-about.liquid             ← About page
-├── tv-contact.liquid           ← Contact page
-├── tv-faq.liquid               ← FAQ page
-├── tv-size-guide.liquid        ← Size guide
-└── tv-shipping.liquid          ← Shipping & Returns
-
-assets/
-├── custom-page.css             ← Gift Guide styles
-├── custom-page.js              ← Popup, variants, ATC, upsell
-├── tisso-global.css            ← Global brand styles
-└── tisso-site.js               ← Site-wide JS (FAQ, scroll reveal)
-
-templates/
-├── page.gift-guide.json
-├── page.about.json
-├── page.contact.json
-├── page.faq.json
-├── page.size-guide.json
-└── page.shipping.json
-```
-
-## 🏗️ Architecture
-
-This Shopify theme follows the **Online Store 2.0** architecture, leveraging modular components for maintainability and scalability. The structure emphasizes separation of concerns, with custom sections handling presentation logic and vanilla JavaScript managing interactivity.
-
-### Core Principles
-- **Modular Sections**: Each page section is a self-contained Liquid component with its own schema for customization
-- **Vanilla JavaScript**: Pure ES6+ JavaScript with modern async/await patterns for API interactions
-- **CSS Custom Properties**: Design tokens for consistent theming and easy customization
-- **Performance-First**: Optimized asset loading, lazy loading, and efficient DOM manipulation
-
-### Directory Structure
-```
-theme/
-├── assets/           # Static files (JS, CSS, images)
-├── config/           # Theme settings and presets
-├── layout/           # Base templates and theme structure
-├── locales/          # Translation files
-├── sections/         # Reusable page sections
-├── snippets/         # Liquid includes and partials
-└── templates/        # Page templates and JSON configurations
-```
-
-### Key Components
-- **Custom Sections**: Built from scratch using Liquid templating with schema-driven customization
-- **AJAX Cart Integration**: Seamless add-to-cart functionality with real-time updates
-- **Responsive Design**: Mobile-first approach with CSS Grid and Flexbox
-- **Accessibility**: ARIA labels, keyboard navigation, and screen reader support
-
-## 🛠️ Tech Stack
-- **Shopify Liquid** (OS 2.0 architecture)
-- **Vanilla JavaScript** — no jQuery
-- **CSS Custom Properties** (design tokens)
-- **Shopify AJAX Cart API**
-- **Google Fonts** (Playfair Display + DM Sans)
-
-## 🚀 Branch Structure
-- `master` — connected to live Shopify store
-- `development` — working branch (PR → master)
-
-## 📦 Installation & Setup
-
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd theme_export__reethika-selvam-s-48-teststore-myshopify-com-tisso-vison-theme__09APR2026-1048am
-   ```
-
-2. **Install dependencies** (if any)
-   ```bash
-   # No external dependencies required - pure Shopify theme
-   ```
-
-3. **Upload to Shopify**
-   - Zip the theme folder
-   - Upload via Shopify Admin > Online Store > Themes
-   - Or use Shopify CLI: `shopify theme push`
-
-4. **Configure theme settings**
-   - Access theme customizer
-   - Set up product collections for the gift guide
-   - Configure banner text and styling
-
-## 🎯 Key Features
-
-### Interactive Product Grid
-- Dynamic variant selection with real-time price updates
-- Modal popup with product details and add-to-cart functionality
-- Automatic upsell logic for specific product combinations
-
-### Performance Optimizations
-- Lazy loading of images and assets
-- Efficient DOM queries and event handling
-- Minimal JavaScript bundle size
-
-### Developer Experience
-- JSDoc documentation for all JavaScript functions
-- Modular CSS architecture with custom properties
-- Clean, maintainable Liquid templates
+</div>
 
 ---
 
-*Built with ❤️ for EcomExperts Shopify Hiring Test*
+## 📋 The Mission
+
+The core assignment was to translate a provided **Figma design** into a functional Shopify page relying exclusively on **custom sections**. 
+
+> **Strict Constraints:**  
+> 🚫 No jQuery  
+> 🚫 No ready-made Dawn sections  
+> ✅ 100% Built from scratch with Vanilla JS & Modular CSS
+
+---
+
+## 🚀 Impact & Deliverables
+
+### 🎨 The Figma Implementation (Part Five)
+A highly interactive, conversion-focused Gift Guide experience.
+
+| Feature Implementation | Status |
+| :--- | :---: |
+| **Dynamic Banner** — All text fully editable via Shopify Customizer | ✅ |
+| **Micro-Interactions** — Animated shimmer + lift effects on primary buttons | ✅ |
+| **Scrolling Ticker** — Continuous marquee strip injected at the bottom | ✅ |
+| **Customizer-Driven Grid** — 6-product grid selectable dynamically | ✅ |
+| **Visual Cues** — Pulsing dot indicator on each product card | ✅ |
+| **Quick View Modal** — Popup surfacing name, price, descriptions, and variants | ✅ |
+| **Dynamic Rendering** — Variant DOM updates fed by product JSON | ✅ |
+| **AJAX Integration** — Seamless Add to Cart via Shopify AJAX API | ✅ |
+| **Smart Upsell** — Auto-add logic ("Soft Winter Jacket" on Black + Medium) | ✅ |
+| **Responsive Engineering** — Flawless Mobile-first design | ✅ |
+| **Modern JS** — Zero jQuery, strict vanilla ES6+ | ✅ |
+| **Developer Ergonomics** — Comprehensive JSDoc comments validating all logic | ✅ |
+
+### 📄 Brand Pages Expansion
+Beyond the core assignment, a full suite of brand pages was developed to complete the theme environment.
+
+| Page Template | File Name |
+| :--- | :--- |
+| **Homepage** | `index.json` |
+| **Gift Guide** (Figma Task) | `page.gift-guide.json` |
+| **About Us** | `page.about.json` |
+| **Contact** | `page.contact.json` |
+| **FAQ** | `page.faq.json` |
+| **Size Guide** | `page.size-guide.json` |
+| **Shipping & Returns** | `page.shipping.json` |
+
+---
+
+## 🏗️ Technical Architecture
+
+This Shopify theme leverages the **Online Store 2.0** architecture, heavily prioritizing modular component design, maintainability, and enterprise-level scalability. 
+
+<details>
+<summary><b>📂 Explore Directory Structure</b></summary>
+<br>
+
+The theme structure respects Shopify OS 2.0 paradigms with absolute separation of concerns.
+
+```text
+theme/
+├── assets/           # Static files, CSS Custom Properties, Vanilla JS
+├── config/           # Theme settings and global presets
+├── layout/           # Base templates and structural containers
+├── locales/          # Translation files
+├── sections/         # Reusable, schema-driven page sections
+├── snippets/         # Liquid includes and partials
+└── templates/        # Page templates and JSON configurations
+```
+</details>
+
+<details>
+<summary><b>🛠️ New Files Manifest</b></summary>
+<br>
+
+**1. Modular Sections (`sections/`)**
+* `custom-banner.liquid` — Gift Guide Banner (Figma Task)
+* `custom-product-grid.liquid` — Gift Guide Grid + Popup (Figma Task)
+* `tv-homepage.liquid` — Homepage Layout
+* `tv-about.liquid`, `tv-contact.liquid`, `tv-faq.liquid`, `tv-size-guide.liquid`, `tv-shipping.liquid`
+
+**2. Styles & Scripts (`assets/`)**
+* `custom-page.css`, `custom-page.js` — Scoped logic for Gift Guide (Popup, variants, ATC, upsell)
+* `tisso-global.css`, `tisso-site.js` — Global brand UI and Site-wide behaviors (FAQ accordion, scroll reveals)
+
+**3. OS 2.0 Templates (`templates/`)**
+* `page.gift-guide.json`, `page.about.json`, `page.contact.json`, `page.faq.json`, `page.size-guide.json`, `page.shipping.json`
+</details>
+
+### 💎 Core Engineering Principles
+1. **Modular Sections:** Self-contained Liquid components leveraging JSON schemas for deep customizer integration.
+2. **Vanilla JavaScript:** Pure ES6+ paradigms leaning heavily into modern async/await patterns for responsive API interactions.
+3. **Design Tokens:** Extensive use of CSS Custom Properties mapped to global settings for rapid theming.
+4. **Performance-First:** Optimized asset loading pathways, lazy loading primitives, and ultra-efficient DOM parsing.
+5. **Accessibility:** Native ARIA labels integration, logical keyboard navigation flows.
+
+---
+
+## ⚙️ Tech Stack & Tooling
+*   **Shopify Liquid** (OS 2.0 Native)
+*   **Vanilla JavaScript** (No Library Dependencies)
+*   **CSS Custom Properties** (Variables Network)
+*   **Shopify AJAX Cart API**
+*   **Google Fonts** (Playfair Display, DM Sans)
+*   **Git Workflow** (`development` → `master` PR strategy)
+
+---
+
+## 💻 Installation & Setup
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Reethikaa05/Reethika-Selvam.git
+   ```
+
+2. **Upload to Shopify**
+   * Package the theme folder into a `.zip` archive.
+   * Upload via **Shopify Admin > Online Store > Themes > Add Theme > Upload zip file**.
+   * *Alternatively*, utilize Shopify CLI: `shopify theme push`.
+
+3. **Configure Environment**
+   * Jump into the Shopify Theme Customizer.
+   * Populate product collections to feed the Gift Guide.
+   * Adjust banner typography, block settings, and styling utilizing the built-in UI options.
+
+---
+<div align="center">
+  <p><i>Design engineered with ❤️ and rigorous standards for EcomExperts.</i></p>
+</div>

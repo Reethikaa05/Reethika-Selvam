@@ -42,7 +42,15 @@
         fetchpriority="high"
       />
     {% else %}
-      {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+      <img
+        src="https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?auto=format&fit=crop&w=1200&q=80"
+        alt="Premium Shopping Experience"
+        width="1200"
+        height="1400"
+        style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);"
+        loading="eager"
+        fetchpriority="high"
+      />
     {% endif %}
     <div class="tv-hero__tag">{{ section.settings.hero_tag }}</div>
   </div>
@@ -132,7 +140,15 @@
                 loading="lazy"
               />
             {% else %}
-              {{ 'image' | placeholder_svg_tag: 'tv-cats__item-img' }}
+              <img
+                src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=400&q=80"
+                alt="{{ block.settings.category_name }}"
+                class="tv-cats__item-img"
+                width="400"
+                height="533"
+                style="width: 100%; height: 100%; object-fit: cover;"
+                loading="lazy"
+              />
             {% endif %}
             <div class="tv-cats__item-overlay">
               <span class="tv-cats__item-name">{{ block.settings.category_name }}</span>
@@ -157,7 +173,14 @@
           loading="lazy"
         />
       {% else %}
-        {{ 'lifestyle-2' | placeholder_svg_tag }}
+        <img
+          src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=900&q=80"
+          alt="Editorial Look"
+          width="900"
+          height="900"
+          style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);"
+          loading="lazy"
+        />
       {% endif %}
     </div>
     <div class="tv-editorial__content">
